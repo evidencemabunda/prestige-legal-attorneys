@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prestige-legal-attorneys.vercel.app/sitemap.xml

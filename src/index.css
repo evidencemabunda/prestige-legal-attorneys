@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0f172a;
+  --color-secondary: #1e3a8a;
+  --color-accent: #d4af37;
+  --color-background: #f8fafc;
+  --color-foreground: #1e293b;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-primary/80 backdrop-blur-md border border-white/10;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-accent via-amber-300 to-accent bg-clip-text text-transparent;
+  }
+
+  .shadow-premium {
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+  }
+
+  .shadow-card {
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  }
+}
