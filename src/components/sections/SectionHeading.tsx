@@ -1,7 +1,21 @@
 import { MotionWrapper } from '@/components/animations/MotionWrapper'
 import { cn } from '@/lib/utils'
 
-export function SectionHeading({ label, title, subtitle, center = true, light = false }) {
+interface SectionHeadingProps {
+  label?: string
+  title: string
+  subtitle?: string
+  center?: boolean
+  light?: boolean
+}
+
+export function SectionHeading({
+  label,
+  title,
+  subtitle,
+  center = true,
+  light = false,
+}: SectionHeadingProps) {
   return (
     <MotionWrapper
       variant="slideUp"

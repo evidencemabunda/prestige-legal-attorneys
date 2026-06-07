@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
-import { cva } from 'class-variance-authority'
-import { motion } from 'framer-motion'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { motion, type HTMLMotionProps } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
@@ -30,23 +30,44 @@ const buttonVariants = cva(
   }
 )
 
-const Button = React.forwardRef(
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+  ripple?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ripple = true, ...props }, ref) => {
     const useMotion = ripple && !asChild
-    const Comp = asChild ? Slot : useMotion ? motion.button : 'button'
-    const motionProps = useMotion
-      ? {
-          whileTap: { scale: 0.97 },
-          whileHover: { scale: 1.02 },
-          transition: { type: 'spring', stiffness: 400, damping: 17 },
-        }
-      : {}
+
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        />
+      )
+    }
+
+    if (useMotion) {
+      return (
+        <motion.button
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          {...(props as HTMLMotionProps<'button'>)}
+        />
+      )
+    }
 
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...motionProps}
         {...props}
       />
     )

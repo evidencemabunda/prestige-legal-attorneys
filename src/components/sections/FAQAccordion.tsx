@@ -5,8 +5,13 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { MotionWrapper } from '@/components/animations/MotionWrapper'
+import type { FAQItem } from '@/types'
 
-export function FAQAccordion({ items }) {
+interface FAQAccordionProps {
+  items: FAQItem[]
+}
+
+export function FAQAccordion({ items }: FAQAccordionProps) {
   return (
     <MotionWrapper variant="slideUp">
       <Accordion type="single" collapsible className="w-full">

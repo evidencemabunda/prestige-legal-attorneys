@@ -6,7 +6,9 @@ import { FloatingElements } from './FloatingElements'
 import { heroStats } from '@/data/services'
 import { useCounter } from '@/hooks/useCounter'
 
-function StatItem({ value, suffix, label }) {
+import type { HeroStat } from '@/types'
+
+function StatItem({ value, suffix, label }: HeroStat) {
   const { count, ref } = useCounter(value, 2000)
 
   return (

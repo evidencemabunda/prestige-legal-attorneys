@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 
-export function SEO({ title, description }) {
+interface SEOProps {
+  title?: string
+  description?: string
+}
+
+export function SEO({ title, description }: SEOProps) {
   useEffect(() => {
     document.title = title
       ? `${title} | Prestige Legal Attorneys`

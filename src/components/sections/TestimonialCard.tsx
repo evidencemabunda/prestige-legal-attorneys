@@ -1,7 +1,12 @@
 import { Star, Quote } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import type { Testimonial } from '@/types'
 
-export function TestimonialCard({ testimonial }) {
+interface TestimonialCardProps {
+  testimonial: Testimonial
+}
+
+export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
     <Card className="border-0 shadow-card h-full">
       <CardContent className="p-8">

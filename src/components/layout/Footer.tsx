@@ -1,3 +1,4 @@
+import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Scale, Mail, Phone, MapPin, Share2, Globe, Link2, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -22,7 +23,7 @@ const socialLinks = [
 ]
 
 export function Footer() {
-  const handleNewsletter = (e) => {
+  const handleNewsletter = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     alert('Thank you for subscribing! (Demo)')
   }

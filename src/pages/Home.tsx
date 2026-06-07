@@ -11,8 +11,9 @@ import { MotionWrapper, StaggerContainer, StaggerItem } from '@/components/anima
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { practiceAreas, whyChooseUs, heroStats } from '@/data/services'
+import type { IconMap } from '@/types'
 
-const iconMap = { Award, Heart, TrendingUp, Lock }
+const iconMap: IconMap = { Award, Heart, TrendingUp, Lock }
 
 export default function Home() {
   return (
@@ -88,9 +89,9 @@ export default function Home() {
             subtitle="Expert representation across all major areas of law."
           />
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {practiceAreas.map((area, i) => (
+            {practiceAreas.map((area) => (
               <StaggerItem key={area.id}>
-                <ServiceCard {...area} index={i} />
+                <ServiceCard {...area} />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -107,7 +108,8 @@ export default function Home() {
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyChooseUs.map((item, i) => {
-              const Icon = iconMap[item.icon]
+              const Icon = iconMap[item.icon as keyof IconMap]
+              if (!Icon) return null
               return (
                 <MotionWrapper key={item.title} variant="scaleIn" delay={i * 0.1}>
                   <Card className="h-full border-0 shadow-card hover:shadow-premium transition-shadow group text-center p-8">

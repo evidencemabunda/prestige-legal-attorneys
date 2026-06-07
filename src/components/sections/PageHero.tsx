@@ -1,7 +1,13 @@
 import { motion } from 'framer-motion'
 import { FloatingElements } from './FloatingElements'
 
-export function PageHero({ title, subtitle, breadcrumb }) {
+interface PageHeroProps {
+  title: string
+  subtitle?: string
+  breadcrumb?: string
+}
+
+export function PageHero({ title, subtitle, breadcrumb }: PageHeroProps) {
   return (
     <section className="relative min-h-[45vh] flex items-center bg-primary overflow-hidden">
       <div

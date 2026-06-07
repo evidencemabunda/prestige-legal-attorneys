@@ -1,11 +1,25 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, type LucideIcon } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-export function ServiceCard({ icon: Icon, title, shortDescription, image, featured = false, index = 0 }) {
+interface ServiceCardProps {
+  icon: LucideIcon
+  title: string
+  shortDescription: string
+  image: string
+  featured?: boolean
+}
+
+export function ServiceCard({
+  icon: Icon,
+  title,
+  shortDescription,
+  image,
+  featured = false,
+}: ServiceCardProps) {
   return (
     <motion.div
       whileHover={{ y: -8 }}

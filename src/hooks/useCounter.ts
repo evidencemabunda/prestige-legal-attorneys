@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react'
 
-export function useCounter(end, duration = 2000, startOnView = true) {
+export function useCounter(end: number, duration = 2000, startOnView = true) {
   const [count, setCount] = useState(0)
   const [hasStarted, setHasStarted] = useState(false)
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!startOnView) {
@@ -31,10 +31,10 @@ export function useCounter(end, duration = 2000, startOnView = true) {
   useEffect(() => {
     if (!hasStarted) return
 
-    let startTime
-    let animationFrame
+    let startTime: number | undefined
+    let animationFrame: number
 
-    const animate = (timestamp) => {
+    const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp
       const progress = Math.min((timestamp - startTime) / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)

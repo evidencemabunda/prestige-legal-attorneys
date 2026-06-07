@@ -1,7 +1,10 @@
 import { useCounter } from '@/hooks/useCounter'
 import { MotionWrapper } from '@/components/animations/MotionWrapper'
+import type { HeroStat } from '@/types'
 
-function Counter({ value, suffix, label }) {
+interface CounterProps extends HeroStat {}
+
+function Counter({ value, suffix, label }: CounterProps) {
   const { count, ref } = useCounter(value, 2200)
 
   return (
@@ -15,7 +18,12 @@ function Counter({ value, suffix, label }) {
   )
 }
 
-export function CounterSection({ stats, dark = true }) {
+interface CounterSectionProps {
+  stats: HeroStat[]
+  dark?: boolean
+}
+
+export function CounterSection({ stats, dark = true }: CounterSectionProps) {
   return (
     <section className={dark ? 'bg-primary py-20' : 'bg-white py-20'}>
       <div className="container mx-auto px-4 lg:px-8">
